@@ -1,5 +1,6 @@
 class Service < ApplicationRecord
     has_many :notes
+    has_many :performed_services
 
     validates :name, presence: true, uniqueness: true
     validates :price, presence: true

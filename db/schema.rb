@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_27_101321) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_27_102646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_101321) do
     t.index ["state"], name: "index_notes_on_state"
   end
 
+  create_table "performed_services", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "service_id", null: false
+    t.bigint "worker_id", null: false
+    t.boolean "bonuses", default: false
+    t.integer "total_price"
+    t.integer "payment_method"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_performed_services_on_client_id"
+    t.index ["service_id"], name: "index_performed_services_on_service_id"
+    t.index ["worker_id"], name: "index_performed_services_on_worker_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -57,4 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_101321) do
 
   add_foreign_key "notes", "clients"
   add_foreign_key "notes", "services"
+  add_foreign_key "performed_services", "clients"
+  add_foreign_key "performed_services", "services"
+  add_foreign_key "performed_services", "workers"
 end

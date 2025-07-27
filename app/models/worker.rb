@@ -1,4 +1,5 @@
 class Worker < ApplicationRecord
+    has_many :performed_services
 
     validates :username, presence: true, uniqueness: true
     validates :encrypted_password, presence: true

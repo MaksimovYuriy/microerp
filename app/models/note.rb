@@ -4,6 +4,7 @@ class Note < ApplicationRecord
 
   validates :client, presence: true
   validates :service, presence: true
+  validates :date, presence: true
 
   include AASM
 
