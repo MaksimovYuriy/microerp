@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_27_103904) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_27_104246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_103904) do
     t.index ["worker_id"], name: "index_performed_services_on_worker_id"
   end
 
+  create_table "service_material_logs", force: :cascade do |t|
+    t.bigint "service_material_id", null: false
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_material_id"], name: "index_service_material_logs_on_service_material_id"
+  end
+
   create_table "service_materials", force: :cascade do |t|
     t.bigint "service_id", null: false
     t.bigint "material_id", null: false
@@ -93,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_103904) do
   add_foreign_key "performed_services", "clients"
   add_foreign_key "performed_services", "services"
   add_foreign_key "performed_services", "workers"
+  add_foreign_key "service_material_logs", "service_materials"
   add_foreign_key "service_materials", "materials"
   add_foreign_key "service_materials", "services"
 end
