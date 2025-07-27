@@ -13,6 +13,9 @@ gem "puma", ">= 5.0"
 # Graphiti — сериализация и построение API по JSON:API
 gem "graphiti"
 
+# AASM - конечный автомат для моделей
+gem 'aasm'
+
 # CORS для разрешения кросс-доменных запросов
 gem "rack-cors"
 
@@ -31,7 +34,6 @@ gem "kaminari"
 
 # Фоновые задачи (если будут)
 gem "sidekiq"
-gem "redis"
 
 # Кэширование
 gem "redis"
