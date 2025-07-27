@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_27_094518) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_27_101321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,26 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_094518) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "service_id", null: false
+    t.datetime "date"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_notes_on_client_id"
+    t.index ["service_id"], name: "index_notes_on_service_id"
+    t.index ["state"], name: "index_notes_on_state"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "workers", force: :cascade do |t|
     t.string "username"
     t.string "encrypted_password"
@@ -35,4 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_27_094518) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "notes", "clients"
+  add_foreign_key "notes", "services"
 end
