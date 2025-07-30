@@ -5,4 +5,6 @@ class ClientResource < ApplicationResource
   attribute :bonuses, :integer
   attribute :description, :string
   attribute :birth_date, :datetime
+
+  has_many :notes
 end

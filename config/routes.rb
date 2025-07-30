@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   scope path: ApplicationResource.endpoint_namespace, defaults: { format: :jsonapi } do
+    resources :services
+    resources :notes
     resources :clients
   end
 end
