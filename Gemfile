@@ -12,6 +12,7 @@ gem "puma", ">= 5.0"
 
 # Graphiti — сериализация и построение API по JSON:API
 gem "graphiti"
+gem "graphiti-rails"
 
 # AASM - конечный автомат для моделей
 gem 'aasm'
