@@ -7,4 +7,5 @@ class ClientResource < ApplicationResource
   attribute :birth_date, :datetime
 
   has_many :notes
+  has_many :performed_services
 end

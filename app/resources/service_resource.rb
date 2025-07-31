@@ -4,4 +4,5 @@ class ServiceResource < ApplicationResource
     attribute :status, :string_enum, allow: Service.statuses.keys
 
     has_many :notes
+    has_many :performed_services
 end
