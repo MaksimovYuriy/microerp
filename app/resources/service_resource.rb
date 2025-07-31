@@ -5,4 +5,5 @@ class ServiceResource < ApplicationResource
 
     has_many :notes
     has_many :performed_services
+    has_many :service_materials
 end
