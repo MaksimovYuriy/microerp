@@ -13,6 +13,7 @@ gem "puma", ">= 5.0"
 # Graphiti — сериализация и построение API по JSON:API
 gem "graphiti"
 gem "graphiti-rails"
+gem "responders"
 
 # AASM - конечный автомат для моделей
 gem 'aasm'
@@ -21,8 +22,8 @@ gem 'aasm'
 gem "rack-cors"
 
 # JWT аутентификация поверх devise
-gem "devise"
-gem "devise-jwt"
+gem 'bcrypt'
+gem 'jwt'
 
 # Авторизация
 gem "pundit"
