@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :authenticate!, only: [:destroy]
 
     def create
         worker = Worker.find_by(username: login_params[:username])
