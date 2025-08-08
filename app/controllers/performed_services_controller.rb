@@ -1,4 +1,6 @@
 class PerformedServicesController < ApplicationController
+  before_action :authenticate!  
+
   def index
     performed_services = PerformedServiceResource.all(params)
     respond_with(performed_services)

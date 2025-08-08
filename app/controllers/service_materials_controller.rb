@@ -1,4 +1,6 @@
 class ServiceMaterialsController < ApplicationController
+  before_action :authenticate!
+
   def index
     service_materials = ServiceMaterialResource.all(params)
     respond_with(service_materials)

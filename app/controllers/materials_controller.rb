@@ -1,4 +1,6 @@
 class MaterialsController < ApplicationController
+  before_action :authenticate!  
+
   def index
     materials = MaterialResource.all(params)
     respond_with(materials)

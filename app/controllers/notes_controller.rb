@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_action :authenticate!
+
   def index
     notes = NoteResource.all(params)
     respond_with(notes)

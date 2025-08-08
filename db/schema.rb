@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_03_182317) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_08_153626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,9 +40,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_03_182317) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "worker_id"
     t.index ["client_id"], name: "index_notes_on_client_id"
     t.index ["service_id"], name: "index_notes_on_service_id"
     t.index ["state"], name: "index_notes_on_state"
+    t.index ["worker_id"], name: "index_notes_on_worker_id"
   end
 
   create_table "performed_services", force: :cascade do |t|
@@ -104,6 +106,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_03_182317) do
 
   add_foreign_key "notes", "clients"
   add_foreign_key "notes", "services"
+  add_foreign_key "notes", "workers"
   add_foreign_key "performed_services", "clients"
   add_foreign_key "performed_services", "services"
   add_foreign_key "performed_services", "workers"

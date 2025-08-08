@@ -1,4 +1,6 @@
 class WorkersController < ApplicationController
+  before_action :authenticate!
+
   def index
     workers = WorkerResource.all(params)
     respond_with(workers)

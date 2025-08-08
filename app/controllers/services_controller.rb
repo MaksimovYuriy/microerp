@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  before_action :authenticate!
+
   def index
     services = ServiceResource.all(params)
     respond_with(services)

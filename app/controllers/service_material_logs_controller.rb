@@ -1,4 +1,6 @@
 class ServiceMaterialLogsController < ApplicationController
+  before_action :authenticate!
+
   def index
     service_material_logs = ServiceMaterialLogResource.all(params)
     respond_with(service_material_logs)

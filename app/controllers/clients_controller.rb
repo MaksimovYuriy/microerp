@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  before_action :authenticate!  
+  
   def index
     clients = ClientResource.all(params)
     respond_with(clients)
