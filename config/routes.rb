@@ -13,7 +13,13 @@ Rails.application.routes.draw do
     resources :performed_services
     resources :workers
     resources :services
-    resources :notes
+    resources :notes do
+      member do
+        patch :start, to: 'notes/states#start'
+        patch :complete, to: 'notes/states#complete'
+        patch :cancel, to: 'notes/states#cancel'
+      end
+    end
     resources :clients
   end
 end
