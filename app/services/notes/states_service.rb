@@ -13,6 +13,7 @@ module Notes
         def call
             validate!
             @note.public_send("#{@action.to_s}!")
+            execute_trigger(@action)
 
             debugger
 
@@ -27,6 +28,20 @@ module Notes
         def validate!
             unless ACTIONS.include?(@action)
                 raise 'Incorrect action!'
+            end
+        end
+
+        def execute_trigger(action)
+            case action
+            when :start
+                material_logs_service = Notes::MaterialLogsService.new(@note)
+                material_logs_service.call
+            when :complete
+                # PriceService
+                # PerformedService
+                # BonusesService
+            when :cancel
+                # Возможно какая-то логика позже
             end
         end
     end
