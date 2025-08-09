@@ -11,5 +11,4 @@ class Service < ApplicationRecord
         inactive: 0,
         active: 1
     }
-
 end

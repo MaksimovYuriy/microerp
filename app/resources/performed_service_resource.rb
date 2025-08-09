@@ -4,7 +4,7 @@ class PerformedServiceResource < ApplicationResource
     attribute :worker_id, :integer_id
     attribute :bonuses, :boolean
     attribute :total_price, :integer
-    attribute :payment_method, :string_enum, allow: ['cash', 'card']
+    attribute :payment_method, :string_enum, allow: PerformedService.payment_methods.keys
     attribute :date, :datetime
 
     belongs_to :client
