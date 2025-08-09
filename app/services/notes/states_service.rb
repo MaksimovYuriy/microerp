@@ -13,6 +13,9 @@ module Notes
         def call
             validate!
             @note.public_send("#{@action.to_s}!")
+
+            debugger
+
             true
         rescue StandardError => e
             @errors << e.message
