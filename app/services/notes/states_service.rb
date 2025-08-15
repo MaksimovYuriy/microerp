@@ -37,8 +37,10 @@ module Notes
             when :complete
                 total_price = Notes::PriceService.new(@note).call
                 Notes::PerformService.new(@note, total_price, @current_user).call
+                Notes::DestroyService.new(@note).call
             when :cancel
                 Notes::CancelService.new(@note, @current_user).call
+                Notes::DestroyService.new(@note).call
             end
         end
     end
