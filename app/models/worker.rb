@@ -2,6 +2,7 @@ class Worker < ApplicationRecord
     has_secure_password
 
     has_many :performed_services
+    has_many :canceled_services
 
     validates :username, presence: true, uniqueness: true
     validates :role, presence: true

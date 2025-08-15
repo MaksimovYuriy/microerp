@@ -34,14 +34,13 @@ module Notes
         def execute_trigger(action)
             case action
             when :start
-                material_logs_service = Notes::MaterialLogsService.new(@note)
-                material_logs_service.call
+                Notes::MaterialLogsService.new(@note).call
             when :complete
                 # PriceService
                 # PerformedService
                 # BonusesService
             when :cancel
-                # Возможно какая-то логика позже
+                # CanceledService
             end
         end
     end

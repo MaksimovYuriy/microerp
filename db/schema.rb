@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_08_153626) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_15_174514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "canceled_services", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "service_id", null: false
+    t.bigint "worker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "date", null: false
+    t.index ["client_id"], name: "index_canceled_services_on_client_id"
+    t.index ["service_id"], name: "index_canceled_services_on_service_id"
+    t.index ["worker_id"], name: "index_canceled_services_on_worker_id"
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -104,6 +116,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_08_153626) do
     t.string "password_digest"
   end
 
+  add_foreign_key "canceled_services", "clients"
+  add_foreign_key "canceled_services", "services"
+  add_foreign_key "canceled_services", "workers"
   add_foreign_key "notes", "clients"
   add_foreign_key "notes", "services"
   add_foreign_key "notes", "workers"

@@ -68,8 +68,7 @@ group :development, :test do
 end
 
 group :development do
-  # Автоматическая перезагрузка и ускорение команд (можно раскомментировать при необходимости)
-  # gem "spring"
+  gem 'rails-erd'
 end
 
 
