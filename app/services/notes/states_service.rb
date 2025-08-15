@@ -4,18 +4,17 @@ module Notes
 
         ACTIONS = [:start, :complete, :cancel].freeze
 
-        def initialize(note, action)
+        def initialize(note, action, current_user: nil)
             @note = note
             @action = action.to_sym
             @errors = []
+            @current_user = current_user
         end
 
         def call
             validate!
             @note.public_send("#{@action.to_s}!")
             execute_trigger(@action)
-
-            debugger
 
             true
         rescue StandardError => e
@@ -36,11 +35,10 @@ module Notes
             when :start
                 Notes::MaterialLogsService.new(@note).call
             when :complete
-                # PriceService
-                # PerformedService
-                # BonusesService
+                total_price = Notes::PriceService.new(@note).call
+                Notes::PerformService.new(@note, total_price, @current_user).call
             when :cancel
-                # CanceledService
+                Notes::CancelService.new(@note, @current_user).call
             end
         end
     end

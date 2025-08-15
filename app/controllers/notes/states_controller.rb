@@ -17,7 +17,7 @@ module Notes
         def complete
             note = Note.find(action_params[:id])
 
-            note_states = Notes::StatesService.new(note, :complete)
+            note_states = Notes::StatesService.new(note, :complete, current_user: current_user)
 
             if note_states.call
                 render json: { data: { id: note.id, status: note.state }}
@@ -29,7 +29,7 @@ module Notes
         def cancel
             note = Note.find(action_params[:id])
 
-            note_states = Notes::StatesService.new(note, :cancel)
+            note_states = Notes::StatesService.new(note, :cancel, current_user: current_user)
 
             if note_states.call
                 render json: { data: { id: note.id, status: note.state }}
